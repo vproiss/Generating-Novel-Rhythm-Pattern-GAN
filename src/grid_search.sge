@@ -1,0 +1,17 @@
+#!/bin/bash
+#$ -N grid_search
+#$ -l mem=4G
+#$ -cwd
+#$ -pe default 2
+#$ -o $HOME
+#$ -e $HOME
+#$ -l h=*cippy*
+
+export PATH="$HOME/miniconda/bin:$PATH"
+eval "$(conda shell.bash hook)"
+conda activate iannwtf_final
+
+echo "    Training"
+python -m main -s $*
+
+conda deactivate
